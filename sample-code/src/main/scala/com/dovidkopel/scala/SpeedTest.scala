@@ -4,14 +4,23 @@ package com.dovidkopel.scala
   * Created by dkopel on 1/18/17.
   */
 object SpeedTest extends App {
-    val mph100 = Speed(100D, SpeedUnits.MPH)
-    val kph = mph100.convert(SpeedUnits.KPH)
-    val ms = mph100.convert(SpeedUnits.MS)
-    val kt = mph100.convert(SpeedUnits.KT)
+    val mph100 = Speed(100D, MPH)
+    val kph = mph100.convert(KPH)
+    val ms = mph100.convert(MS)
+    val kt = mph100.convert(KT)
     println(s"KPH: $kph")
     println(s"MS: $ms")
     println(s"KT: $kt")
 
+    val fastFord: Automobile = CarFactory.factory
+        .make("Ford")
+        .cargoCapacity(200)
+        .color(White)
+        .doors(4)
+        .maxSpeed(Speed(200, MPH))
+        .build
+
+    println(fastFord.maxSpeed)
 
     class Foo(v: String) {
         var value: String = v
@@ -22,7 +31,6 @@ object SpeedTest extends App {
     }
 
     implicit def fooToBar(foo: Foo): Bar = new Bar(foo.value)
-//    def fooToBar2(foo: Foo): Bar = new Bar(foo.value)
 
     def +(a: Int, b: Int): Int = a + b
 
