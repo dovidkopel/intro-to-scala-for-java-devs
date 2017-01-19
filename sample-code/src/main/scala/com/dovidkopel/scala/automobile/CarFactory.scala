@@ -3,6 +3,7 @@ package com.dovidkopel.scala.automobile
 import java.time.Year
 
 import com.dovidkopel.scala._
+import com.dovidkopel.scala.unit._
 
 /**
   * Created by dkopel on 1/18/17.
@@ -12,7 +13,7 @@ class CarFactory private {
     protected var _make: Company = _
     protected var _model: String = _
     protected var _year: Year = _
-    protected var _maxSpeed: Speed = _
+    protected var _maxSpeed: Speed[_] = _
     protected var _passengers: Int = 4
     protected var _doors: Int = 4
     protected var _features: Set[Feature] = Set.empty
@@ -45,8 +46,8 @@ class CarFactory private {
         this
     }
 
-    def maxSpeed(speed: Speed): CarFactory = {
-        _maxSpeed = speed
+    def maxSpeed(speed: Speed[_ <: SpeedUnit[_ <: LengthUnit, _ <: TimeUnit]])(unit: SpeedUnit[_ <: LengthUnit, _ <: TimeUnit]): CarFactory = {
+        _maxSpeed = speed(unit)
         this
     }
 
@@ -105,7 +106,7 @@ class CarFactory private {
         val make: Company = _make
         val model: String = _model
         val year: Year = _year
-        val maxSpeed: Speed = _maxSpeed
+        val maxSpeed: Speed[_] = _maxSpeed
         val passengers: Int = _passengers
         val doors: Int = _doors
         val features: Set[Feature] = _features

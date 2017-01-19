@@ -1,18 +1,16 @@
 package com.dovidkopel.scala
 
 import com.dovidkopel.scala.automobile.{Automobile, CarFactory}
+import com.dovidkopel.scala.unit._
 
 /**
   * Created by dkopel on 1/18/17.
   */
 object SpeedTest extends App {
     val mph100 = Speed(100D, MPH)
-    val kph = mph100.convert(KMH)
-    val ms = mph100.convert(MS)
-    val kt = mph100.convert(KT)
-    println(s"KPH: $kph")
-    println(s"MS: $ms")
-    println(s"KT: $kt")
+    val kph = mph100(KMH)
+    val ms = mph100(MS)
+    val kt = mph100(KT)
 
     val ferrari488: Automobile = CarFactory.factory
         .make(Company("Ferrari"))
@@ -24,7 +22,7 @@ object SpeedTest extends App {
         .length(Distance(4568, MilliMeter))
         .width(Distance(1952, MilliMeter))
         .weight(Weight(1544, KiloGrams))
-        .maxSpeed(Speed(330, KMH))
+        .maxSpeed(Speed(330, KMH))(MPH)
         .build
 
     val bugattiVeyron: Automobile = CarFactory.factory
@@ -37,12 +35,13 @@ object SpeedTest extends App {
         .length(Distance(4462, MilliMeter))
         .height(Distance(1159, MilliMeter))
         .weight(Weight(1888, KiloGrams))
-        .maxSpeed(Speed(435.31, KMH))
+        .maxSpeed(Speed(435.31, KMH))(MPH)
         .build
 
-    val cars = ferrari488 :: bugattiVeyron :: Nil
-    val faster = cars.sorted.reverse.head
-    println(faster.model)
+    val cars: List[Automobile] = ferrari488 :: bugattiVeyron :: Nil
+    val carsSorted = cars.sortBy(_.maxSpeed)
+    val faster = carsSorted.head
+    println(faster.model+" : "+faster.maxSpeed)
 
 
     class Foo(v: String) {

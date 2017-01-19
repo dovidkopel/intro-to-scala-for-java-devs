@@ -1,5 +1,7 @@
 package com.dovidkopel.scala
 
+import com.dovidkopel.scala.unit.{Distance, Weight}
+
 /**
   * Created by dkopel on 1/18/17.
   */

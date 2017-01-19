@@ -1,4 +1,4 @@
-package com.dovidkopel.scala.transportation
+package com.dovidkopel.scala.unit
 
 /**
   * Created by dkopel on 1/18/17.
