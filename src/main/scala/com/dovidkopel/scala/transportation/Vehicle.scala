@@ -1,7 +1,8 @@
 package com.dovidkopel.scala.transportation
 
 import com.dovidkopel.scala.PhysicalDimensions
-import com.dovidkopel.scala.automobile.{Feature, Transmission}
+import squants.motion.Velocity
+import squants.space.Area
 
 /**
   * Created by dkopel on 1/18/17.
@@ -9,11 +10,7 @@ import com.dovidkopel.scala.automobile.{Feature, Transmission}
 trait Vehicle extends PhysicalDimensions {
     def passengers: Int
 
-    def doors: Int
+    def maxSpeed: Velocity
 
-    def features: Set[Feature]
-
-    def transmission: Transmission
-
-    def cargoCapacity: Double
+    def cargoCapacity: Area
 }

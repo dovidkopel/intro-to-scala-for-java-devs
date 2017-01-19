@@ -3,7 +3,10 @@ package com.dovidkopel.scala.automobile
 import java.time.Year
 
 import com.dovidkopel.scala._
-import com.dovidkopel.scala.unit._
+import squants.Area
+import squants.mass.Mass
+import squants.motion.{UsMilesPerHour, Velocity}
+import squants.space.Length
 
 /**
   * Created by dkopel on 1/18/17.
@@ -13,17 +16,17 @@ class CarFactory private {
     protected var _make: Company = _
     protected var _model: String = _
     protected var _year: Year = _
-    protected var _maxSpeed: Speed[_] = _
+    protected var _maxSpeed: Velocity = _
     protected var _passengers: Int = 4
     protected var _doors: Int = 4
     protected var _features: Set[Feature] = Set.empty
     protected var _transmission: Transmission = Automatic
-    protected var _cargoCapacity: Double = _
-    protected var _length: Distance = _
-    protected var _height: Distance = _
-    protected var _width: Distance = _
-    protected var _wheelbase: Distance = _
-    protected var _weight: Weight = _
+    protected var _cargoCapacity: Area = _
+    protected var _length: Length = _
+    protected var _height: Length = _
+    protected var _width: Length = _
+    protected var _wheelbase: Length = _
+    protected var _weight: Mass = _
 
 
     def color(color: Color): CarFactory = {
@@ -46,8 +49,8 @@ class CarFactory private {
         this
     }
 
-    def maxSpeed(speed: Speed[_ <: SpeedUnit[_ <: LengthUnit, _ <: TimeUnit]])(unit: SpeedUnit[_ <: LengthUnit, _ <: TimeUnit]): CarFactory = {
-        _maxSpeed = speed(unit)
+    def maxSpeed(speed: Velocity): CarFactory = {
+        _maxSpeed = speed
         this
     }
 
@@ -71,32 +74,32 @@ class CarFactory private {
         this
     }
 
-    def cargoCapacity(capacity: Double): CarFactory = {
+    def cargoCapacity(capacity: Area): CarFactory = {
         _cargoCapacity = capacity
         this
     }
 
-    def length(length: Distance): CarFactory = {
+    def length(length: Length): CarFactory = {
         _length = length
         this
     }
 
-    def wheelbase(wheelbase: Distance): CarFactory = {
+    def wheelbase(wheelbase: Length): CarFactory = {
         _wheelbase = wheelbase
         this
     }
 
-    def width(width: Distance): CarFactory = {
+    def width(width: Length): CarFactory = {
         _width = width
         this
     }
 
-    def weight(weight: Weight): CarFactory = {
+    def weight(weight: Mass): CarFactory = {
         _weight = weight
         this
     }
 
-    def height(height: Distance): CarFactory = {
+    def height(height: Length): CarFactory = {
         _height = height
         this
     }
@@ -106,17 +109,17 @@ class CarFactory private {
         val make: Company = _make
         val model: String = _model
         val year: Year = _year
-        val maxSpeed: Speed[_] = _maxSpeed
+        val maxSpeed: Velocity = UsMilesPerHour(_maxSpeed.toUsMilesPerHour)
         val passengers: Int = _passengers
         val doors: Int = _doors
         val features: Set[Feature] = _features
         val transmission: Transmission = _transmission
-        val cargoCapacity: Double = _cargoCapacity
-        val length: Distance = _length
-        val height: Distance = _height
-        val width: Distance = _width
-        val wheelbase: Distance = _wheelbase
-        val weight: Weight = _weight
+        val cargoCapacity: Area = _cargoCapacity
+        val length: Length = _length
+        val height: Length = _height
+        val width: Length = _width
+        val wheelbase: Length = _wheelbase
+        val weight: Mass = _weight
     }
 }
 object CarFactory {

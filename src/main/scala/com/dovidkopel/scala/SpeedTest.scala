@@ -1,6 +1,6 @@
 package com.dovidkopel.scala
 
-import com.dovidkopel.scala.automobile.{Automobile, CarFactory}
+import com.dovidkopel.scala.automobile.{Automobile, Bugatti, Ferrari}
 import com.dovidkopel.scala.unit._
 
 /**
@@ -12,31 +12,8 @@ object SpeedTest extends App {
     val ms = mph100(MS)
     val kt = mph100(KT)
 
-    val ferrari488: Automobile = CarFactory.factory
-        .make(Company("Ferrari"))
-        .model("488 GTB")
-        .color(White)
-        .doors(2)
-        .passengers(2)
-        .wheelbase(Distance(2650, MilliMeter))
-        .length(Distance(4568, MilliMeter))
-        .width(Distance(1952, MilliMeter))
-        .weight(Weight(1544, KiloGrams))
-        .maxSpeed(Speed(330, KMH))(MPH)
-        .build
-
-    val bugattiVeyron: Automobile = CarFactory.factory
-        .make(Company("Bugatti"))
-        .model("Veyron")
-        .color(Black)
-        .doors(2)
-        .passengers(2)
-        .wheelbase(Distance(2710, MilliMeter))
-        .length(Distance(4462, MilliMeter))
-        .height(Distance(1159, MilliMeter))
-        .weight(Weight(1888, KiloGrams))
-        .maxSpeed(Speed(435.31, KMH))(MPH)
-        .build
+    val ferrari488: Automobile = Ferrari.GTB488.color(Blue).build
+    val bugattiVeyron: Automobile = Bugatti.veyron.color(Black).build
 
     val cars: List[Automobile] = ferrari488 :: bugattiVeyron :: Nil
     val carsSorted = cars.sortBy(_.maxSpeed)
