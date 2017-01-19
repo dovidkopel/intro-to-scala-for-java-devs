@@ -1,13 +1,15 @@
-package com.dovidkopel.scala
+package com.dovidkopel.scala.automobile
 
 import java.time.Year
+
+import com.dovidkopel.scala._
 
 /**
   * Created by dkopel on 1/18/17.
   */
 class CarFactory private {
     protected var _color: Color = _
-    protected var _make: String = _
+    protected var _make: Company = _
     protected var _model: String = _
     protected var _year: Year = _
     protected var _maxSpeed: Speed = _
@@ -16,17 +18,19 @@ class CarFactory private {
     protected var _features: Set[Feature] = Set.empty
     protected var _transmission: Transmission = Automatic
     protected var _cargoCapacity: Double = _
-    protected var _length: Int = _
-    protected var _height: Int = _
-    protected var _width: Int = _
-    protected var _weight: Int = _
+    protected var _length: Distance = _
+    protected var _height: Distance = _
+    protected var _width: Distance = _
+    protected var _wheelbase: Distance = _
+    protected var _weight: Weight = _
+
 
     def color(color: Color): CarFactory = {
         _color = color
         this
     }
 
-    def make(make: String): CarFactory = {
+    def make(make: Company): CarFactory = {
         _make = make
         this
     }
@@ -71,29 +75,34 @@ class CarFactory private {
         this
     }
 
-    def length(length: Int): CarFactory = {
+    def length(length: Distance): CarFactory = {
         _length = length
         this
     }
 
-    def width(width: Int): CarFactory = {
+    def wheelbase(wheelbase: Distance): CarFactory = {
+        _wheelbase = wheelbase
+        this
+    }
+
+    def width(width: Distance): CarFactory = {
         _width = width
         this
     }
 
-    def weight(weight: Int): CarFactory = {
+    def weight(weight: Weight): CarFactory = {
         _weight = weight
         this
     }
 
-    def height(height: Int): CarFactory = {
+    def height(height: Distance): CarFactory = {
         _height = height
         this
     }
 
     def build: Automobile = new Automobile {
         val color: Color = _color
-        val make: String = _make
+        val make: Company = _make
         val model: String = _model
         val year: Year = _year
         val maxSpeed: Speed = _maxSpeed
@@ -102,10 +111,11 @@ class CarFactory private {
         val features: Set[Feature] = _features
         val transmission: Transmission = _transmission
         val cargoCapacity: Double = _cargoCapacity
-        val length: Int = _length
-        val height: Int = _height
-        val width: Int = _width
-        val weight: Int = _weight
+        val length: Distance = _length
+        val height: Distance = _height
+        val width: Distance = _width
+        val wheelbase: Distance = _wheelbase
+        val weight: Weight = _weight
     }
 }
 object CarFactory {

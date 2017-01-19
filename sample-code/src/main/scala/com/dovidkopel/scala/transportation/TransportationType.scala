@@ -1,4 +1,4 @@
-package com.dovidkopel.scala
+package com.dovidkopel.scala.transportation
 
 /**
   * Created by dkopel on 1/18/17.

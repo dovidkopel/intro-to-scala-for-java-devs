@@ -1,4 +1,7 @@
-package com.dovidkopel.scala
+package com.dovidkopel.scala.transportation
+
+import com.dovidkopel.scala.PhysicalDimensions
+import com.dovidkopel.scala.automobile.{Feature, Transmission}
 
 /**
   * Created by dkopel on 1/18/17.
