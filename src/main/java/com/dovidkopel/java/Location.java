@@ -11,4 +11,8 @@ public interface Location {
     default Double getAltitude() {
         return 0.0D;
     }
+
+    default String stringify() {
+        return "lat: "+getLatitude()+", long: "+getLongitude()+", alt: "+getAltitude();
+    }
 }

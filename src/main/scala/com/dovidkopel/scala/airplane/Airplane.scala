@@ -2,7 +2,8 @@ package com.dovidkopel.scala.airplane
 
 import com.dovidkopel.scala.Company
 import com.dovidkopel.scala.transportation.{Air, Vehicle}
-import com.dovidkopel.scala.unit.{Distance, Speed}
+import squants.motion.Velocity
+import squants.space.Length
 
 /**
   * Created by dkopel on 1/19/17.
@@ -12,9 +13,9 @@ trait Airplane extends Vehicle with Air {
 
     def model: String
 
-    def wingSpan: Distance
+    def wingSpan: Length
 
-    def cabinWidth: Distance
+    def cabinWidth: Length
 
-    def cruisingSpeed: Speed[_]
+    def cruisingSpeed: Velocity
 }

@@ -1,17 +1,11 @@
 package com.dovidkopel.scala
 
 import com.dovidkopel.scala.automobile.{Automobile, Bugatti, Ferrari}
-import com.dovidkopel.scala.unit._
 
 /**
   * Created by dkopel on 1/18/17.
   */
 object SpeedTest extends App {
-    val mph100 = Speed(100D, MPH)
-    val kph = mph100(KMH)
-    val ms = mph100(MS)
-    val kt = mph100(KT)
-
     val ferrari488: Automobile = Ferrari.GTB488.color(Blue).build
     val bugattiVeyron: Automobile = Bugatti.veyron.color(Black).build
 
